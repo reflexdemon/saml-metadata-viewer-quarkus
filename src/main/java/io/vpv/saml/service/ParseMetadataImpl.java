@@ -2,6 +2,7 @@ package io.vpv.saml.service;
 
 import io.vpv.saml.metadata.model.IDPMetaData;
 import io.vpv.saml.metadata.service.MetaDataParser;
+import io.vpv.saml.metadata.xml.modal.EntityDescriptorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,15 @@ public class ParseMetadataImpl implements ParseMetadata {
 
         IDPMetaData metaData = metaDataParser.parseIDPMetaData(url);
         logger.info("metaData {}", metaData);
+        return metaData;
+    }
+
+    @Override
+    public EntityDescriptorType parse(URL url) throws IOException {
+        logger.info("Parsing EntityDescriptorType {}", url);
+
+        EntityDescriptorType metaData = metaDataParser.parseMetadata(url);
+        logger.info("EntityDescriptorType: {}", metaData);
         return metaData;
     }
 }

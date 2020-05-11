@@ -2,6 +2,7 @@ package io.vpv.saml.controller;
 
 
 import io.vpv.saml.metadata.model.IDPMetaData;
+import io.vpv.saml.metadata.xml.modal.EntityDescriptorType;
 import io.vpv.saml.service.ParseMetadata;
 
 import javax.inject.Inject;
@@ -18,9 +19,15 @@ public class ParseSamlEndpoint {
     @Inject
     ParseMetadata parseMetadata;
 
+//    @GET
+//    public IDPMetaData getIDPMetaData(@QueryParam("endpoint") String endpoint) throws IOException {
+//        URL url = new URL(endpoint);
+//        return parseMetadata.getIDPMetaData(url);
+//    }
+
     @GET
-    public IDPMetaData getIDPMetaData(@QueryParam("endpoint") String endpoint) throws IOException {
+    public EntityDescriptorType parse(@QueryParam("endpoint") String endpoint) throws IOException {
         URL url = new URL(endpoint);
-        return parseMetadata.getIDPMetaData(url);
+        return parseMetadata.parse(url);
     }
 }
