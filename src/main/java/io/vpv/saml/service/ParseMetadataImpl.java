@@ -1,6 +1,7 @@
 package io.vpv.saml.service;
 
 import io.vpv.saml.metadata.model.IDPMetaData;
+import io.vpv.saml.metadata.model.SPMetaData;
 import io.vpv.saml.metadata.service.MetaDataParser;
 import io.vpv.saml.metadata.xml.modal.EntityDescriptorType;
 import org.slf4j.Logger;
@@ -24,6 +25,14 @@ public class ParseMetadataImpl implements ParseMetadata {
         logger.info("Parsing {}", url);
 
         IDPMetaData metaData = metaDataParser.parseIDPMetaData(url);
+        logger.info("metaData {}", metaData);
+        return metaData;
+    }
+    @Override
+    public SPMetaData getSPMetaData(URL url) throws IOException {
+        logger.info("Parsing {}", url);
+
+        SPMetaData metaData = metaDataParser.parseSPMetadata(url);
         logger.info("metaData {}", metaData);
         return metaData;
     }
